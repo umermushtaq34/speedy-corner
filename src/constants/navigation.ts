@@ -1,3 +1,5 @@
+import { LOCATIONS } from "./locations";
+
 type NavbarBaseItem = {
   label: string;
 };
@@ -16,12 +18,7 @@ export const NAVBAR_LINKS: readonly NavbarItem[] = [
   { label: "Home", href: "/" },
   {
     label: "Locations",
-    children: [
-      { label: "Downtown", href: "/locations/downtown" },
-      { label: "Gulberg", href: "/locations/gulberg" },
-      { label: "DHA", href: "/locations/dha" },
-      { label: "Johar Town", href: "/locations/johar-town" },
-    ],
+    children: LOCATIONS,
   },
   { label: "About Us", href: "/about" },
   { label: "Promotions", href: "/promotions" },

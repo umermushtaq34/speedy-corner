@@ -1,17 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import { NAVBAR_LINKS } from "@/constants/navigation";
+import { FooterLinks, FooterContact } from "@/constants/footer";
 
-const quickLinks = NAVBAR_LINKS.flatMap((item) =>
-  "href" in item ? [{ label: item.label, href: item.href }] : item.children
-);
+const quickLinks = FooterLinks;
 
 export function Footer() {
   return (
     <footer className="mt-auto border-t border-white/8 bg-theme-charcoal text-white">
       <div className="mx-auto grid max-w-[1440px] gap-10 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.2fr_0.9fr_1fr] lg:px-9 lg:py-16">
         <div className="max-w-sm">
-          <Link href="/" className="inline-block" aria-label="Speedy Corner home">
+          <Link
+            href="/"
+            className="inline-block"
+            aria-label="Speedy Corner home"
+          >
             <div className="relative h-16 w-[210px] sm:h-[72px] sm:w-[250px]">
               <Image
                 src="/speedy-corner-logo.webp"
@@ -24,8 +26,8 @@ export function Footer() {
           </Link>
 
           <p className="mt-5 max-w-xs text-sm leading-7 text-white/70">
-            Speedy Corner brings together quick service, fresh flavor, and a clean
-            neighborhood-friendly experience.
+            Speedy Corner brings together quick service, fresh flavor, and a
+            clean neighborhood-friendly experience.
           </p>
         </div>
 
@@ -36,7 +38,10 @@ export function Footer() {
           <ul className="mt-5 grid gap-3 text-sm text-white/78">
             {quickLinks.map((link) => (
               <li key={`${link.label}-${link.href}`}>
-                <Link href={link.href} className="transition hover:text-theme-accent">
+                <Link
+                  href={link.href}
+                  className="transition hover:text-theme-accent"
+                >
                   {link.label}
                 </Link>
               </li>
@@ -50,23 +55,23 @@ export function Footer() {
           </h2>
           <div className="mt-5 grid gap-4 text-sm leading-7 text-white/76">
             <p>
-              24 Main Boulevard
-              <br />
-              Lahore, Pakistan
+              {FooterContact.address}
             </p>
             <p>
-              <a href="tel:+920000000000" className="transition hover:text-theme-accent">
-                +92 000 000 0000
+              <a
+                href={"tel:" + FooterContact.phone}
+                className="transition hover:text-theme-accent"
+              >
+                {FooterContact.phone}
               </a>
               <br />
               <a
-                href="mailto:hello@speedycorner.com"
+                href={"mailto:" + FooterContact.email}
                 className="transition hover:text-theme-accent"
               >
-                hello@speedycorner.com
+                {FooterContact.email}
               </a>
             </p>
-            <p>Mon - Sun: 11:00 AM to 11:00 PM</p>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ type FormState = {
   fullName: string;
   email: string;
   phone: string;
-  topic: string;
+  subject: string;
   message: string;
 };
 
@@ -14,23 +14,35 @@ const INITIAL_STATE: FormState = {
   fullName: "",
   email: "",
   phone: "",
-  topic: "general",
+  subject: "",
   message: "",
 };
 
-export function ContactFormSection() {
+type ContactFormSectionProps = {
+  contactInfo: {
+    address: string;
+    phone: string;
+    email: string;
+  };
+  mainHeading: string;
+  mainSubheading: string;
+  introLines: string[];
+};
+
+export function ContactFormSection({
+  contactInfo,
+  mainHeading,
+  mainSubheading,
+  introLines,
+}: ContactFormSectionProps) {
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   useEffect(() => {
-    if (!showSuccessModal) {
-      return;
-    }
+    if (!showSuccessModal) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setShowSuccessModal(false);
-      }
+      if (event.key === "Escape") setShowSuccessModal(false);
     };
 
     window.addEventListener("keydown", onKeyDown);
@@ -54,12 +66,16 @@ export function ContactFormSection() {
         <header className="max-w-3xl">
           <p className="eyebrow">Contact Us</p>
           <h1 className="mt-3 text-4xl font-semibold tracking-[-0.03em] text-theme-ink sm:text-5xl">
-            Let&apos;s Talk
+            {mainHeading}
           </h1>
-          <p className="mt-5 text-base leading-8 text-theme-muted sm:text-lg">
-            Reach out for store feedback, partnership inquiries, promotion questions, or
-            support. Our team will get back to you as soon as possible.
+          <p className="mt-3 text-lg leading-8 text-theme-muted sm:text-xl">
+            {mainSubheading}
           </p>
+          <div className="mt-5 grid gap-2 text-base leading-8 text-theme-muted sm:text-lg">
+            {introLines.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+          </div>
         </header>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
@@ -69,13 +85,18 @@ export function ContactFormSection() {
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="grid gap-2">
-                <span className="text-sm font-semibold text-theme-ink">Full Name</span>
+                <span className="text-sm font-semibold text-theme-ink">
+                  Full Name
+                </span>
                 <input
                   required
                   type="text"
                   value={form.fullName}
                   onChange={(event) =>
-                    setForm((previous) => ({ ...previous, fullName: event.target.value }))
+                    setForm((previous) => ({
+                      ...previous,
+                      fullName: event.target.value,
+                    }))
                   }
                   className="h-12 rounded-[0.8rem] border border-theme-line bg-[#fcfaf7] px-4 text-sm text-theme-ink outline-none transition focus:border-theme-accent"
                   placeholder="Enter your full name"
@@ -83,13 +104,18 @@ export function ContactFormSection() {
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-semibold text-theme-ink">Email Address</span>
+                <span className="text-sm font-semibold text-theme-ink">
+                  Email Address
+                </span>
                 <input
                   required
                   type="email"
                   value={form.email}
                   onChange={(event) =>
-                    setForm((previous) => ({ ...previous, email: event.target.value }))
+                    setForm((previous) => ({
+                      ...previous,
+                      email: event.target.value,
+                    }))
                   }
                   className="h-12 rounded-[0.8rem] border border-theme-line bg-[#fcfaf7] px-4 text-sm text-theme-ink outline-none transition focus:border-theme-accent"
                   placeholder="you@example.com"
@@ -97,12 +123,17 @@ export function ContactFormSection() {
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-semibold text-theme-ink">Phone Number</span>
+                <span className="text-sm font-semibold text-theme-ink">
+                  Phone Number
+                </span>
                 <input
                   type="tel"
                   value={form.phone}
                   onChange={(event) =>
-                    setForm((previous) => ({ ...previous, phone: event.target.value }))
+                    setForm((previous) => ({
+                      ...previous,
+                      phone: event.target.value,
+                    }))
                   }
                   className="h-12 rounded-[0.8rem] border border-theme-line bg-[#fcfaf7] px-4 text-sm text-theme-ink outline-none transition focus:border-theme-accent"
                   placeholder="+1 000 000 0000"
@@ -110,30 +141,37 @@ export function ContactFormSection() {
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-semibold text-theme-ink">Topic</span>
-                <select
-                  value={form.topic}
+                <span className="text-sm font-semibold text-theme-ink">
+                  Subject (optional)
+                </span>
+                <input
+                  type="text"
+                  value={form.subject}
                   onChange={(event) =>
-                    setForm((previous) => ({ ...previous, topic: event.target.value }))
+                    setForm((previous) => ({
+                      ...previous,
+                      subject: event.target.value,
+                    }))
                   }
                   className="h-12 rounded-[0.8rem] border border-theme-line bg-[#fcfaf7] px-4 text-sm text-theme-ink outline-none transition focus:border-theme-accent"
-                >
-                  <option value="general">General Inquiry</option>
-                  <option value="promotions">Promotions</option>
-                  <option value="support">Customer Support</option>
-                  <option value="partnership">Partnership</option>
-                </select>
+                  placeholder="What is this about?"
+                />
               </label>
             </div>
 
             <label className="mt-5 grid gap-2">
-              <span className="text-sm font-semibold text-theme-ink">Message</span>
+              <span className="text-sm font-semibold text-theme-ink">
+                Message
+              </span>
               <textarea
                 required
                 rows={6}
                 value={form.message}
                 onChange={(event) =>
-                  setForm((previous) => ({ ...previous, message: event.target.value }))
+                  setForm((previous) => ({
+                    ...previous,
+                    message: event.target.value,
+                  }))
                 }
                 className="rounded-[0.8rem] border border-theme-line bg-[#fcfaf7] px-4 py-3 text-sm text-theme-ink outline-none transition focus:border-theme-accent"
                 placeholder="How can we help you?"
@@ -154,23 +192,23 @@ export function ContactFormSection() {
             </h2>
             <div className="mt-5 grid gap-5 text-sm leading-7 text-theme-muted sm:text-base">
               <p>
-                24 Main Boulevard
-                <br />
-                Lahore, Pakistan
+                {contactInfo.address}
               </p>
               <p>
-                <a href="tel:+920000000000" className="transition hover:text-theme-accent">
-                  +92 000 000 0000
+                <a
+                  href={"tel:" + contactInfo.phone}
+                  className="transition hover:text-theme-accent"
+                >
+                  {contactInfo.phone}
                 </a>
                 <br />
                 <a
-                  href="mailto:hello@speedycorner.com"
+                  href={"mailto:" + contactInfo.email}
                   className="transition hover:text-theme-accent"
                 >
-                  hello@speedycorner.com
+                  {contactInfo.email}
                 </a>
               </p>
-              <p>Mon - Sun: 11:00 AM to 11:00 PM</p>
             </div>
           </aside>
         </div>
