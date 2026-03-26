@@ -3,8 +3,7 @@ import { HeroCarousel } from "@/components/hero-carousel";
 import { LocationsSection } from "@/components/locations-section";
 import { PromoBanner } from "@/components/promo-banner";
 import { WhatWeProvideSection } from "@/components/what-we-provide-section";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.speedycorner.com";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Speedy Corner | Fuel, Convenience, Kitchen & Weekly Deals",

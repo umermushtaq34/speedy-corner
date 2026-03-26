@@ -1,9 +1,6 @@
 import type { MetadataRoute } from "next";
 import { Location_data } from "@/constants/locations";
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
-  "https://speedycorner.com";
+import { SITE_URL } from "@/lib/site";
 
 const STATIC_ROUTES: Array<{
   path: string;
