@@ -191,20 +191,20 @@ export function ContactFormSection({
               Contact Information
             </h2>
             <div className="mt-5 grid gap-5 text-sm leading-7 text-theme-muted sm:text-base">
-              <p>
+              <p className="rounded-[1rem] border border-transparent bg-[#fcfaf7] px-4 py-4 transition duration-200 hover:-translate-y-1 hover:border-theme-line hover:bg-white hover:shadow-[0_14px_28px_rgba(42,30,20,0.08)]">
                 {contactInfo.address}
               </p>
-              <p>
+              <p className="rounded-[1rem] border border-transparent bg-[#fcfaf7] px-4 py-4 transition duration-200 hover:-translate-y-1 hover:border-theme-line hover:bg-white hover:shadow-[0_14px_28px_rgba(42,30,20,0.08)]">
                 <a
                   href={"tel:" + contactInfo.phone}
-                  className="transition hover:text-theme-accent"
+                  className="transition hover:text-theme-accent hover:underline"
                 >
                   {contactInfo.phone}
                 </a>
                 <br />
                 <a
                   href={"mailto:" + contactInfo.email}
-                  className="transition hover:text-theme-accent"
+                  className="transition hover:text-theme-accent hover:underline"
                 >
                   {contactInfo.email}
                 </a>

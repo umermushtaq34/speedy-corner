@@ -8,37 +8,36 @@ export type LocationCard = {
 
 export const LOCATION_CARDS: readonly LocationCard[] = [
   {
-    title: "740 NW Shoal Creek",
-    city: "Kansas City, Missouri, 64155",
-    imageUrl:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+    title: "740 NW Shoal Creek, Kansas City, MO 64155",
+    city: "Kansas City, MO 64155",
+    imageUrl: "/740-nw-shoal-creek/740-nw-shoal-creek1.jpg",
     detailsLink: "/location/740-nw-shoal-creek",
     directionsLink:
       "http://google.com/maps/place/Speedy+corner+shoal+creek/@39.2318466,-94.6091295,12z/data=!4m10!1m2!2m1!1s740+Northeast+Shoal+Creek+Parkway,+Kansas+City,+Chouteau+Township,+MO,+USA!3m6!1s0x87c05975c69d15d1:0xc6ebda24424d60f6!8m2!3d39.2897448!4d-94.5869868!15sCko3NDAgTm9ydGhlYXN0IFNob2FsIENyZWVrIFBhcmt3YXksIEthbnNhcyBDaXR5LCBDaG91dGVhdSBUb3duc2hpcCwgTU8sIFVTQVpIIkY3NDAgbm9ydGhlYXN0IHNob2FsIGNyZWVrIHBhcmt3YXkga2Fuc2FzIGNpdHkgY2hvdXRlYXUgdG93bnNoaXAgbW8gdXNhkgERY29udmVuaWVuY2Vfc3RvcmWaAURDaTlEUVVsUlFVTnZaRU5vZEhsalJqbHZUMjFrTW1KNmFFTmpRekYxWXpGT1NGbFZjelJsVjNnMVdtNVplR1JZWXhBQuABAPoBBAhIEB8!16s%2Fg%2F11y_s70pnw?hl=en-US&entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D",
   },
   {
-    title: "6701 Blue Ridge Blvd",
-    city: "Kansas City, Missouri 64133",
+    title: "6701 Blue Ridge Blvd, Kansas City, MO 64133",
+    city: "Kansas City, MO 64133",
     imageUrl:
-      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
+      "/6701-blue-ridge-blvd/6701-blue-ridge-blvd1.jpg",
     detailsLink: "/location/6701-blue-ridge-blvd",
     directionsLink:
       "https://www.google.com/maps/place/Speedy+Corner/@39.0020564,-94.4844128,17z/data=!3m1!4b1!4m6!3m5!1s0x87c0e40a3633a7fb:0xd24fe8d263194c3f!8m2!3d39.0020523!4d-94.4818379!16s%2Fg%2F11lgj3_v3s?hl=en-US&entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D",
   },
   {
-    title: "25500 Old Kansas City Rd",
-    city: "Hillsdale, KS, 66036",
+    title: "25500 Old Kansas City Rd, Hillsdale, KS 66036",
+    city: "Hillsdale, KS 66036",
     imageUrl:
-      "https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1200&q=80",
+      "/25500-old-kansas-city-rd/25500-old-kansas-city-rd1.jpg",
     detailsLink: "/location/25500-old-kansas-city-rd",
     directionsLink:
       "https://www.google.com/maps/place/Phillips+66/@38.6648188,-94.8602325,17z/data=!4m15!1m8!3m7!1s0x87c059cdf2b46db7:0xf16343d35868f10b!2sKansas+City,+MO+64155!3b1!8m2!3d39.282939!4d-94.5727598!16s%2Fm%2F01__jk3!3m5!1s0x87c0b1a6f745c5d7:0x332cc8a6a114ca12!8m2!3d38.6648147!4d-94.8553616!16s%2Fg%2F11sbwb8qw9?hl=en-US&entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D",
   },
   {
-    title: "8725 Blue Ridge Blvd",
-    city: "Kansas City, Missouri 64138",
+    title: "8725 Blue Ridge Blvd, Kansas City, MO 64138",
+    city: "Kansas City, MO 64138",
     imageUrl:
-      "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1200&q=80",
+      "/8725-blue-ridge-blvd/8725-blue-ridge-blvd1.jpg",
     detailsLink: "/location/8725-blue-ridge-blvd",
     directionsLink:
       "https://www.google.com/maps/place/Phillips+66/@38.9655376,-94.4994026,17z/data=!3m1!4b1!4m6!3m5!1s0x87c0e6bfc7068ae5:0x6515b007d52661e8!8m2!3d38.9655376!4d-94.4994026!16s%2Fg%2F11tmr33_4g!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D",
@@ -47,19 +46,19 @@ export const LOCATION_CARDS: readonly LocationCard[] = [
 
 export const LOCATIONS = [
   {
-    label: "740 NW Shoal Creek ",
+    label: "740 NW Shoal Creek, Kansas City, MO 64155",
     href: "/location/740-nw-shoal-creek",
   },
   {
-    label: "6701 Blue Ridge Blvd ",
+    label: "6701 Blue Ridge Blvd, Kansas City, MO 64133",
     href: "/location/6701-blue-ridge-blvd",
   },
   {
-    label: "25500 Old Kansas City Rd ",
+    label: "25500 Old Kansas City Rd, Hillsdale, KS 66036",
     href: "/location/25500-old-kansas-city-rd",
   },
   {
-    label: "8725 Blue Ridge Blvd ",
+    label: "8725 Blue Ridge Blvd, Kansas City, MO 64138",
     href: "/location/8725-blue-ridge-blvd",
   },
 ] as const;
@@ -71,8 +70,7 @@ const SHOAL_CREEK_IMAGES = Array.from(
 
 const BLUE_RIDGE_IMAGES = Array.from(
   { length: 10 },
-  (_, index) =>
-    `/6701-blue-ridge-blvd/6701-blue-ridge-blvd${index + 1}.jpg`,
+  (_, index) => `/6701-blue-ridge-blvd/6701-blue-ridge-blvd${index + 1}.jpg`,
 );
 
 const HILLSDALE_IMAGES = Array.from(
@@ -83,8 +81,7 @@ const HILLSDALE_IMAGES = Array.from(
 
 const SOUTH_BLUE_RIDGE_IMAGES = Array.from(
   { length: 15 },
-  (_, index) =>
-    `/8725-blue-ridge-blvd/8725-blue-ridge-blvd${index + 1}.jpg`,
+  (_, index) => `/8725-blue-ridge-blvd/8725-blue-ridge-blvd${index + 1}.jpg`,
 );
 
 export const Location_data = [
@@ -107,7 +104,7 @@ export const Location_data = [
     description: "Your convenient stop in North Kansas City.",
     features: ["Fast", "Fresh", "Convenient"],
     address: {
-      street: "740 NW Shoal Creek Pkwy",
+      street: "740 NW Shoal Creek",
       city: "Kansas City",
       state: "MO",
       zip: "64155",
@@ -122,9 +119,12 @@ export const Location_data = [
       "Fuel (Regular, Premium, Diesel)",
       "Convenience Store",
       "Snacks & Cold Beverages",
-      "Liquor",
+      "Liquor (Spirits, Beer & Wine)",
       "Coffee Bar",
       "Soda & Beer",
+      "Kitchen (Drive Thru)",
+      "Bait",
+      "Lotto, Lottery & Scratchers",
     ],
     why_choose_us: [
       "Easy highway access",
@@ -167,9 +167,10 @@ export const Location_data = [
       "Convenience Store",
       "Snacks & Drinks",
       "Everyday Essentials",
-      "Liquor",
+      "Liquor (Spirits, Beer & Wine)",
       "Vapes",
       "Coffee Bar",
+      "Lotto, Lottery & Scratchers",
     ],
     why_choose_us: [
       "Quick and easy stop",
@@ -208,11 +209,15 @@ export const Location_data = [
       "Located in Hillsdale, this location is ideal for drivers traveling through the area. Enjoy quick fueling, refreshments, and a smooth stop before getting back on the road.",
     image_paths: HILLSDALE_IMAGES,
     services: [
-      "Fuel Station",
+      "Fuel & Diesel",
+      "Convenience Store",
       "Grab & Go Snacks",
       "Cold Drinks & Soda",
       "Bait",
-      "Liquor Shop",
+      "Liquor (Spirits, Beer & Wine)",
+      "Vapes",
+      "Kitchen",
+      "Lotto, Lottery & Scratchers",
     ],
     why_choose_us: [
       "Convenient roadside stop",
@@ -256,9 +261,9 @@ export const Location_data = [
       "Snacks & Beverages",
       "Coffee Bar",
       "Vapes",
-      "Liquor",
-      "Lottery",
+      "Liquor (Spirits, Beer & Wine)",
       "Kitchen",
+      "Lotto, Lottery & Scratchers",
     ],
     why_choose_us: ["Prime location", "Fast checkout", "Reliable service"],
   },

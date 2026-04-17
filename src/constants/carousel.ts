@@ -14,8 +14,7 @@ export const HERO_CAROUSEL_SLIDES: readonly CarouselSlide[] = [
     description: "Fresh. Fast. Convenient",
     buttonTitle: "Locations",
     buttonLink: "/contact",
-    imageUrl:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80",
+    imageUrl: "/carousel/carousel-1.jpeg",
   },
   {
     eyebrow: "Fresh Stops",
@@ -23,8 +22,7 @@ export const HERO_CAROUSEL_SLIDES: readonly CarouselSlide[] = [
     description: "Fast service with a cleaner, brighter roadside experience",
     buttonTitle: "Promotions",
     buttonLink: "/promotions",
-    imageUrl:
-      "https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1800&q=80",
+    imageUrl: "/carousel/carousel-2.jpeg",
   },
   {
     eyebrow: "Neighborhood Ready",
@@ -32,7 +30,6 @@ export const HERO_CAROUSEL_SLIDES: readonly CarouselSlide[] = [
     description: "Coffee, convenience, and quick essentials all in one stop",
     buttonTitle: "About Us",
     buttonLink: "/about",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494412685616-a5d310fbb07d?auto=format&fit=crop&w=1800&q=80",
+    imageUrl: "/carousel/carousel-3.jpeg",
   },
 ] as const;

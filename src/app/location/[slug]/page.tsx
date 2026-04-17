@@ -194,6 +194,28 @@ export default async function LocationPage({
           <p className="!my-0 !text-base !leading-8 !text-theme-muted">{fullAddress}</p>
 
           <h2 className="!mb-2 !mt-10 !text-2xl !font-semibold !text-theme-ink">Find Us On The Map</h2>
+          <div className="not-prose mt-4">
+            <div className="overflow-hidden rounded-[1.2rem] border border-theme-line/80 bg-white shadow-[0_14px_32px_rgba(42,30,20,0.08)]">
+              <div className="h-[320px] w-full sm:h-[420px]">
+                <iframe
+                  title={`${location.name} map`}
+                  src={mapEmbedUrl}
+                  className="h-full w-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </div>
+
+            <a
+              href={location.map_url}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-5 inline-flex h-11 items-center justify-center rounded-[0.9rem] bg-theme-accent px-5 text-xs font-semibold tracking-[0.1em] text-white uppercase transition hover:brightness-95 sm:text-sm"
+            >
+              Open In Google Maps
+            </a>
+          </div>
         </article>
 
         <section className="mt-8">
@@ -218,27 +240,6 @@ export default async function LocationPage({
           images={carouselImages}
           locationName={location.name}
         />
-
-        <div className="mt-4 overflow-hidden rounded-[1.2rem] border border-theme-line/80 bg-white shadow-[0_14px_32px_rgba(42,30,20,0.08)]">
-          <div className="h-[320px] w-full sm:h-[420px]">
-            <iframe
-              title={`${location.name} map`}
-              src={mapEmbedUrl}
-              className="h-full w-full border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-        </div>
-
-        <a
-          href={location.map_url}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-5 inline-flex h-11 items-center justify-center rounded-[0.9rem] bg-theme-accent px-5 text-xs font-semibold tracking-[0.1em] text-white uppercase transition hover:brightness-95 sm:text-sm"
-        >
-          Open In Google Maps
-        </a>
 
         <article className="prose prose-stone mt-10 max-w-none">
           <h2 className="!mb-2 !mt-0 !text-2xl !font-semibold !text-theme-ink">About This Location</h2>
