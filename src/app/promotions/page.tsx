@@ -1,12 +1,25 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  buildBreadcrumbSchema,
+  buildPageMetadata,
+  buildWebPageSchema,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Promotions | Speedy Corner",
   description:
-    "Browse current Speedy Corner promotions including weekly fuel and in-store bundle deals.",
-};
+    "Browse current Speedy Corner promotions, weekly fuel offers, kitchen specials, and convenience store bundle deals.",
+  path: "/promotions",
+  keywords: [
+    "Speedy Corner promotions",
+    "Speedy Corner deals",
+    "fuel offers",
+    "kitchen specials",
+    "convenience store discounts",
+  ],
+});
 
 const offers = [
   {
@@ -36,9 +49,46 @@ const offers = [
 ];
 
 export default function PromotionsPage() {
+  const webPageSchema = buildWebPageSchema({
+    title: "Promotions | Speedy Corner",
+    description:
+      "Browse current Speedy Corner promotions, weekly fuel offers, kitchen specials, and convenience store bundle deals.",
+    path: "/promotions",
+    type: "CollectionPage",
+  });
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Promotions", path: "/promotions" },
+  ]);
+  const offerCatalogSchema = {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    name: "Speedy Corner Promotions",
+    itemListElement: offers.map((offer) => ({
+      "@type": "Offer",
+      name: offer.title,
+      description: offer.summary,
+      availabilityStarts: "2026-04-17",
+      eligibleRegion: "Missouri and Kansas",
+    })),
+  };
+
   return (
-    <section className="bg-[linear-gradient(180deg,#fbfaf8_0%,#f3ece3_100%)] py-14 sm:py-20">
-      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-9">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(offerCatalogSchema) }}
+      />
+      <section className="bg-[linear-gradient(180deg,#fbfaf8_0%,#f3ece3_100%)] py-14 sm:py-20">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-9">
         <header className="max-w-3xl">
           <p className="eyebrow">Promotions</p>
           <h1 className="mt-3 text-4xl font-semibold tracking-[-0.03em] text-theme-ink sm:text-5xl">
@@ -107,7 +157,8 @@ export default function PromotionsPage() {
             Find A Location
           </Link>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }

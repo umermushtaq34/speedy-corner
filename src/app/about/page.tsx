@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  buildBreadcrumbSchema,
+  buildPageMetadata,
+  buildWebPageSchema,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "About Speedy Corner",
   description:
-    "Learn about Speedy Corner, your trusted neighborhood stop for fuel, food, and convenience.",
-};
+    "Learn about Speedy Corner, our mission, our story, and how we serve Kansas City and nearby communities with fuel, food, and convenience.",
+  path: "/about",
+  keywords: [
+    "about Speedy Corner",
+    "Speedy Corner mission",
+    "Speedy Corner story",
+    "trusted convenience store",
+    "trusted gas station brand",
+  ],
+});
 
 const heroHighlights = [
   { label: "Fast", value: "Quick in-and-out service" },
@@ -31,9 +44,30 @@ const reasons = [
 ];
 
 export default function AboutPage() {
+  const webPageSchema = buildWebPageSchema({
+    title: "About Speedy Corner",
+    description:
+      "Learn about Speedy Corner, our mission, our story, and how we serve Kansas City and nearby communities with fuel, food, and convenience.",
+    path: "/about",
+    type: "AboutPage",
+  });
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+  ]);
+
   return (
-    <section className="bg-[linear-gradient(180deg,#fbfaf8_0%,#f3ece3_100%)] py-14 sm:py-20">
-      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-9">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <section className="bg-[linear-gradient(180deg,#fbfaf8_0%,#f3ece3_100%)] py-14 sm:py-20">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-9">
         <header className="max-w-3xl">
           <p className="eyebrow">About Us</p>
           <h1 className="mt-3 text-4xl font-semibold tracking-[-0.03em] text-theme-ink sm:text-5xl">
@@ -176,7 +210,8 @@ export default function AboutPage() {
             Contact Us
           </Link>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }

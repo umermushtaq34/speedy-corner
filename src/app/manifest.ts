@@ -4,6 +4,9 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Speedy Corner",
     short_name: "Speedy Corner",
+    description:
+      "Speedy Corner offers fuel, convenience essentials, kitchen items, coffee, liquor, lottery, bait, and weekly promotions.",
+    categories: ["food", "shopping", "travel", "utilities"],
     start_url: "/",
     display: "standalone",
     background_color: "#fbfaf8",
@@ -27,4 +30,3 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
   };
 }
-

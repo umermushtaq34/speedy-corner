@@ -3,70 +3,35 @@ import { HeroCarousel } from "@/components/hero-carousel";
 import { LocationsSection } from "@/components/locations-section";
 import { PromoBanner } from "@/components/promo-banner";
 import { WhatWeProvideSection } from "@/components/what-we-provide-section";
-import { SITE_URL } from "@/lib/site";
+import {
+  buildAbsoluteUrl,
+  buildBreadcrumbSchema,
+  buildPageMetadata,
+  buildWebPageSchema,
+  SITE_NAME,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Speedy Corner | Fuel, Convenience, Kitchen & Weekly Deals",
+export const metadata: Metadata = buildPageMetadata({
+  title: `${SITE_NAME} | Fuel, Convenience, Kitchen & Weekly Deals`,
   description:
-    "Speedy Corner offers fuel, convenience essentials, kitchen items, drinks, bait, liquor, and weekly promotions at nearby locations.",
-  alternates: {
-    canonical: "/",
-  },
+    "Find nearby Speedy Corner locations for fuel, convenience essentials, kitchen items, coffee, liquor, lottery, bait, and weekly promotions.",
+  path: "/",
   keywords: [
-    "Speedy Corner",
-    "gas station",
-    "convenience store",
-    "weekly deals",
-    "fuel near me",
-    "kitchen",
-    "drinks",
-    "liquor",
-    "Kansas City",
+    "Speedy Corner homepage",
+    "Speedy Corner weekly deals",
+    "Kansas City gas station",
+    "Kansas City convenience store",
+    "fuel and convenience near me",
   ],
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
-  openGraph: {
-    type: "website",
-    url: "/",
-    siteName: "Speedy Corner",
-    title: "Speedy Corner | Fuel, Convenience, Kitchen & Weekly Deals",
-    description:
-      "Find nearby Speedy Corner locations and discover fuel, convenience essentials, food options, and weekly promotions.",
-    images: [
-      {
-        url: "/home-promo-banner.webp",
-        width: 1600,
-        height: 330,
-        alt: "Speedy Corner weekly deals promo banner",
-      },
-    ],
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Speedy Corner | Fuel, Convenience, Kitchen & Weekly Deals",
-    description:
-      "Find nearby Speedy Corner locations and discover fuel, convenience essentials, food options, and weekly promotions.",
-    images: ["/home-promo-banner.webp"],
-  },
-};
+});
 
 export default function Home() {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "ConvenienceStore",
-    name: "Speedy Corner",
-    url: SITE_URL,
-    image: `${SITE_URL}/home-promo-banner.webp`,
+    name: SITE_NAME,
+    url: buildAbsoluteUrl("/"),
+    image: buildAbsoluteUrl("/home-promo-banner.webp"),
     description:
       "Speedy Corner offers fuel, convenience essentials, kitchen items, drinks, bait, liquor, and weekly promotions.",
     areaServed: "Kansas City, Missouri",
@@ -80,12 +45,27 @@ export default function Home() {
       { "@type": "Offer", name: "Weekly Deals" },
     ],
   };
+  const webPageSchema = buildWebPageSchema({
+    title: `${SITE_NAME} | Fuel, Convenience, Kitchen & Weekly Deals`,
+    description:
+      "Find nearby Speedy Corner locations for fuel, convenience essentials, kitchen items, coffee, liquor, lottery, bait, and weekly promotions.",
+    path: "/",
+  });
+  const breadcrumbSchema = buildBreadcrumbSchema([{ name: "Home", path: "/" }]);
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <HeroCarousel />
       <LocationsSection />

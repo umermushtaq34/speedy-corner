@@ -5,16 +5,14 @@ import { notFound } from "next/navigation";
 import { LocationImageCarousel } from "@/components/location-image-carousel";
 import { Location_data } from "@/constants/locations";
 import { IMAGE_BLUR_DATA_URL } from "@/lib/image-blur";
+import {
+  buildBreadcrumbSchema,
+  buildPageMetadata,
+  buildLocationSchema,
+  buildWebPageSchema,
+} from "@/lib/seo";
 
 type RouteParams = Promise<{ slug: string }>;
-const GLOBAL_SEO_KEYWORDS = [
-  "Speedy Corner",
-  "gas station",
-  "convenience store",
-  "fuel and snacks",
-  "Kansas City",
-] as const;
-
 const normalizeSlug = (slug: string) => slug.replace(/^\/+/, "").toLowerCase();
 
 const iconClassName = "h-4 w-4 text-theme-accent";
@@ -115,46 +113,24 @@ export async function generateMetadata({
 
   const normalizedSlug = normalizeSlug(slug);
   const canonicalPath = `/location/${normalizedSlug}`;
-  const seoTitle =
-    location.seo_title_variants[0] ?? `${location.name} | Speedy Corner`;
+  const seoTitle = location.seo_title_variants[0] ?? location.name;
   const seoKeywords = Array.from(
     new Set([
-      ...GLOBAL_SEO_KEYWORDS,
       ...location.seo_keywords,
       ...location.features,
       ...location.services,
+      location.address.street,
+      `${location.address.city} ${location.address.state}`,
     ]),
   );
 
-  return {
+  return buildPageMetadata({
     title: seoTitle,
     description: `${location.description} ${location.tagline}`,
+    path: canonicalPath,
     keywords: seoKeywords,
-    alternates: {
-      canonical: canonicalPath,
-    },
-    openGraph: {
-      title: seoTitle,
-      description: `${location.description} ${location.tagline}`,
-      url: canonicalPath,
-      siteName: "Speedy Corner",
-      type: "website",
-      images: [
-        {
-          url: location.featured_image,
-          width: 1200,
-          height: 630,
-          alt: `${location.name} featured image`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoTitle,
-      description: `${location.description} ${location.tagline}`,
-      images: [location.featured_image],
-    },
-  };
+    image: location.featured_image,
+  });
 }
 
 export default async function LocationPage({
@@ -174,10 +150,34 @@ export default async function LocationPage({
   const carouselImages = Array.from(
     new Set([location.featured_image, ...location.image_paths]),
   );
+  const webPageSchema = buildWebPageSchema({
+    title: location.name,
+    description: `${location.description} ${location.tagline}`,
+    path: `/location/${normalizeSlug(location.slug)}`,
+  });
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Locations", path: "/" },
+    { name: location.name, path: `/location/${normalizeSlug(location.slug)}` },
+  ]);
+  const locationSchema = buildLocationSchema(location);
 
   return (
-    <section className="bg-[linear-gradient(180deg,#fbfaf8_0%,#f3ece3_100%)] py-12 sm:py-16 lg:py-20">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-9">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(locationSchema) }}
+      />
+      <section className="bg-[linear-gradient(180deg,#fbfaf8_0%,#f3ece3_100%)] py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-9">
         <article className="prose prose-stone max-w-none">
           <p className="eyebrow !mb-3 !mt-0">Location Details</p>
           <h1 className="!mb-3 !mt-0 !text-4xl !font-semibold !tracking-[-0.03em] !text-theme-ink sm:!text-5xl">
@@ -284,7 +284,8 @@ export default async function LocationPage({
             Contact Us
           </Link>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }
