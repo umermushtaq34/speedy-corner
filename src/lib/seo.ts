@@ -12,6 +12,8 @@ const locationKeywords = Location_data.flatMap((location) => [
 
 export const SITE_NAME = "Speedy Corner";
 export const DEFAULT_OG_IMAGE = "/home-promo-banner.webp";
+export const MICROSOFT_SITE_VERIFICATION =
+  "E8E466E985071303B6D81BA0A4D4C3FA";
 const FACEBOOK_APP_ID = process.env.NEXT_PUBLIC_FACEBOOK_APP_ID;
 const TWITTER_HANDLE = process.env.NEXT_PUBLIC_TWITTER_HANDLE;
 
@@ -137,6 +139,11 @@ export function buildPageMetadata({
       canonical,
     },
     robots: DEFAULT_ROBOTS,
+    verification: {
+      other: {
+        "msvalidate.01": MICROSOFT_SITE_VERIFICATION,
+      },
+    },
     other: otherMeta,
     openGraph: {
       type,
