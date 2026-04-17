@@ -12,6 +12,8 @@ const locationKeywords = Location_data.flatMap((location) => [
 
 export const SITE_NAME = "Speedy Corner";
 export const DEFAULT_OG_IMAGE = "/home-promo-banner.webp";
+const FACEBOOK_APP_ID = process.env.NEXT_PUBLIC_FACEBOOK_APP_ID;
+const TWITTER_HANDLE = process.env.NEXT_PUBLIC_TWITTER_HANDLE;
 
 export const SITE_KEYWORDS = Array.from(
   new Set([
@@ -76,6 +78,26 @@ export function buildAbsoluteUrl(path: string) {
   return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
+function getImageMimeType(imageUrl: string) {
+  if (imageUrl.endsWith(".png")) {
+    return "image/png";
+  }
+
+  if (imageUrl.endsWith(".jpg") || imageUrl.endsWith(".jpeg")) {
+    return "image/jpeg";
+  }
+
+  if (imageUrl.endsWith(".gif")) {
+    return "image/gif";
+  }
+
+  if (imageUrl.endsWith(".svg")) {
+    return "image/svg+xml";
+  }
+
+  return "image/webp";
+}
+
 export function buildPageMetadata({
   title,
   description,
@@ -85,7 +107,20 @@ export function buildPageMetadata({
   type = "website",
 }: PageSeoConfig): Metadata {
   const canonical = path || "/";
+  const absoluteCanonical = buildAbsoluteUrl(canonical);
+  const absoluteImage = buildAbsoluteUrl(image);
+  const imageMimeType = getImageMimeType(image);
   const mergedKeywords = Array.from(new Set([...SITE_KEYWORDS, ...keywords]));
+  const otherMeta: NonNullable<Metadata["other"]> = {
+    "og:image:secure_url": absoluteImage,
+    "og:image:type": imageMimeType,
+    "og:image:alt": `${title} | ${SITE_NAME}`,
+    "pinterest-rich-pin": "true",
+  };
+
+  if (FACEBOOK_APP_ID) {
+    otherMeta["fb:app_id"] = FACEBOOK_APP_ID;
+  }
 
   return {
     title,
@@ -102,16 +137,19 @@ export function buildPageMetadata({
       canonical,
     },
     robots: DEFAULT_ROBOTS,
+    other: otherMeta,
     openGraph: {
       type,
-      url: canonical,
+      url: absoluteCanonical,
       siteName: SITE_NAME,
       title,
       description,
       locale: "en_US",
       images: [
         {
-          url: image,
+          url: absoluteImage,
+          secureUrl: absoluteImage,
+          type: imageMimeType,
           width: 1600,
           height: 330,
           alt: `${title} | ${SITE_NAME}`,
@@ -122,7 +160,9 @@ export function buildPageMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [image],
+      site: TWITTER_HANDLE,
+      creator: TWITTER_HANDLE,
+      images: [absoluteImage],
     },
   };
 }
