@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LOCATION_CARDS } from "@/constants/locations";
+import { WorkingHours } from "@/components/working-hours";
 
 function PinIcon() {
   return (
@@ -67,14 +68,14 @@ export function LocationsSection() {
           {LOCATION_CARDS.map((location) => (
             <article
               key={location.title}
-              className="overflow-hidden rounded-[1.65rem] border border-white/80 bg-white shadow-[0_18px_44px_rgba(42,30,20,0.09)]"
+              className="flex flex-col overflow-hidden rounded-[1.65rem] border border-white/80 bg-white shadow-[0_18px_44px_rgba(42,30,20,0.09)]"
             >
               <div
-                className="h-64 bg-cover bg-center"
+                className="h-64 shrink-0 bg-cover bg-center"
                 style={{ backgroundImage: `url('${location.imageUrl}')` }}
               />
 
-              <div className="p-5 sm:p-6">
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
                 <h3 className="min-h-[2.6em] text-pretty text-[clamp(1.2rem,1.35vw,1.75rem)] font-semibold leading-[1.05] tracking-[-0.04em] text-theme-accent">
                   {location.title}
                 </h3>
@@ -82,7 +83,14 @@ export function LocationsSection() {
                   {location.city}
                 </p>
 
-                <div className="mt-8 grid gap-3">
+                <div className="mt-5 mb-8 border-t border-theme-line pt-4">
+                  <h4 className="mb-3 text-sm font-semibold text-theme-ink">
+                    Working Hours
+                  </h4>
+                  <WorkingHours groups={location.workingHours} />
+                </div>
+
+                <div className="mt-auto grid gap-3">
                   <Link
                     href={location.detailsLink}
                     className="inline-flex items-center justify-between rounded-[1rem] bg-theme-accent px-5 py-4 text-sm font-semibold tracking-[0.14em] text-white uppercase shadow-[0_12px_26px_rgba(242,106,33,0.24)] transition hover:brightness-95"

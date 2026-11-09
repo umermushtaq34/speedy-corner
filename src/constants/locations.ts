@@ -1,14 +1,67 @@
+export type WorkingHoursGroup = {
+  label?: string;
+  schedule: readonly { days: string; hours: string }[];
+};
+
+const SHOAL_CREEK_HOURS: readonly WorkingHoursGroup[] = [
+  {
+    schedule: [
+      { days: "Monday – Friday", hours: "05:00 AM – 11:00 PM" },
+      { days: "Saturday – Sunday", hours: "06:00 AM – 11:00 PM" },
+    ],
+  },
+];
+
+const BLUE_RIDGE_HOURS: readonly WorkingHoursGroup[] = [
+  {
+    schedule: [
+      { days: "Monday – Thursday", hours: "06:00 AM – 11:59 PM" },
+      { days: "Friday – Saturday", hours: "06:00 AM – 01:00 AM" },
+      { days: "Sunday", hours: "07:00 AM – 11:59 PM" },
+    ],
+  },
+];
+
+const PAOLA_HOURS: readonly WorkingHoursGroup[] = [
+  {
+    label: "Gas Station",
+    schedule: [
+      { days: "Monday – Saturday", hours: "05:00 AM – 10:00 PM" },
+      { days: "Sunday", hours: "06:00 AM – 09:00 PM" },
+    ],
+  },
+  {
+    label: "Liquor Store",
+    schedule: [
+      { days: "Monday – Saturday", hours: "10:00 AM – 10:00 PM" },
+      { days: "Sunday", hours: "10:00 AM – 08:00 PM" },
+    ],
+  },
+];
+
+const SOUTH_BLUE_RIDGE_HOURS: readonly WorkingHoursGroup[] = [
+  {
+    schedule: [
+      { days: "Monday – Thursday", hours: "06:00 AM – 12:00 AM" },
+      { days: "Friday – Saturday", hours: "06:00 AM – 01:00 AM" },
+      { days: "Sunday", hours: "07:00 AM – 12:00 AM" },
+    ],
+  },
+];
+
 export type LocationCard = {
   title: string;
   city: string;
   imageUrl: string;
   detailsLink: string;
   directionsLink: string;
+  workingHours: readonly WorkingHoursGroup[];
 };
 
 export const LOCATION_CARDS: readonly LocationCard[] = [
   {
     title: "740 NW Shoal Creek, Kansas City, MO 64155",
+    workingHours: SHOAL_CREEK_HOURS,
     city: "Kansas City, MO 64155",
     imageUrl: "/740-nw-shoal-creek/740-nw-shoal-creek1.jpg",
     detailsLink: "/location/740-nw-shoal-creek",
@@ -17,27 +70,27 @@ export const LOCATION_CARDS: readonly LocationCard[] = [
   },
   {
     title: "6701 Blue Ridge Blvd, Kansas City, MO 64133",
+    workingHours: BLUE_RIDGE_HOURS,
     city: "Kansas City, MO 64133",
-    imageUrl:
-      "/6701-blue-ridge-blvd/6701-blue-ridge-blvd1.jpg",
+    imageUrl: "/6701-blue-ridge-blvd/6701-blue-ridge-blvd1.jpg",
     detailsLink: "/location/6701-blue-ridge-blvd",
     directionsLink:
       "https://www.google.com/maps/place/Speedy+Corner/@39.0020564,-94.4844128,17z/data=!3m1!4b1!4m6!3m5!1s0x87c0e40a3633a7fb:0xd24fe8d263194c3f!8m2!3d39.0020523!4d-94.4818379!16s%2Fg%2F11lgj3_v3s?hl=en-US&entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D",
   },
   {
     title: "25500 Old Kansas City Rd, Hillsdale, KS 66036",
+    workingHours: PAOLA_HOURS,
     city: "Hillsdale, KS 66036",
-    imageUrl:
-      "/25500-old-kansas-city-rd/25500-old-kansas-city-rd1.jpg",
+    imageUrl: "/25500-old-kansas-city-rd/25500-old-kansas-city-rd1.jpg",
     detailsLink: "/location/25500-old-kansas-city-rd",
     directionsLink:
       "https://www.google.com/maps/place/Phillips+66/@38.6648188,-94.8602325,17z/data=!4m15!1m8!3m7!1s0x87c059cdf2b46db7:0xf16343d35868f10b!2sKansas+City,+MO+64155!3b1!8m2!3d39.282939!4d-94.5727598!16s%2Fm%2F01__jk3!3m5!1s0x87c0b1a6f745c5d7:0x332cc8a6a114ca12!8m2!3d38.6648147!4d-94.8553616!16s%2Fg%2F11sbwb8qw9?hl=en-US&entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D",
   },
   {
     title: "8725 Blue Ridge Blvd, Kansas City, MO 64138",
+    workingHours: SOUTH_BLUE_RIDGE_HOURS,
     city: "Kansas City, MO 64138",
-    imageUrl:
-      "/8725-blue-ridge-blvd/8725-blue-ridge-blvd1.jpg",
+    imageUrl: "/8725-blue-ridge-blvd/8725-blue-ridge-blvd1.jpg",
     detailsLink: "/location/8725-blue-ridge-blvd",
     directionsLink:
       "https://www.google.com/maps/place/Phillips+66/@38.9655376,-94.4994026,17z/data=!3m1!4b1!4m6!3m5!1s0x87c0e6bfc7068ae5:0x6515b007d52661e8!8m2!3d38.9655376!4d-94.4994026!16s%2Fg%2F11tmr33_4g!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D",
@@ -87,6 +140,7 @@ const SOUTH_BLUE_RIDGE_IMAGES = Array.from(
 export const Location_data = [
   {
     name: "Speedy Corner – Shoal Creek",
+    workingHours: SHOAL_CREEK_HOURS,
     slug: "/740-nw-shoal-creek",
     featured_image: "/740-nw-shoal-creek/740-nw-shoal-creek1.jpg",
     tagline: "Fuel up fast at Speedy Corner – Shoal Creek",
@@ -134,6 +188,7 @@ export const Location_data = [
   },
   {
     name: "Speedy Corner – Blue Ridge",
+    workingHours: BLUE_RIDGE_HOURS,
     slug: "/6701-blue-ridge-blvd",
     featured_image: "/6701-blue-ridge-blvd/6701-blue-ridge-blvd1.jpg",
     tagline: "Your quick stop on Blue Ridge Blvd",
@@ -180,6 +235,7 @@ export const Location_data = [
   },
   {
     name: "Speedy Corner – Hillsdale",
+    workingHours: PAOLA_HOURS,
     slug: "/25500-old-kansas-city-rd",
     featured_image: "/25500-old-kansas-city-rd/25500-old-kansas-city-rd1.jpg",
     tagline: "Serving Hillsdale with speed and convenience",
@@ -227,6 +283,7 @@ export const Location_data = [
   },
   {
     name: "Speedy Corner – South Blue Ridge",
+    workingHours: SOUTH_BLUE_RIDGE_HOURS,
     slug: "/8725-blue-ridge-blvd",
     featured_image: "/8725-blue-ridge-blvd/8725-blue-ridge-blvd1.jpg",
     tagline: "Fast fuel and convenience in South Kansas City",
