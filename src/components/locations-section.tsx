@@ -85,7 +85,7 @@ export function LocationsSection() {
 
                 <div className="mt-5 mb-8 border-t border-theme-line pt-4">
                   <h4 className="mb-3 text-sm font-semibold text-theme-ink">
-                    Working Hours
+                    Opening Hours
                   </h4>
                   <WorkingHours groups={location.workingHours} />
                 </div>

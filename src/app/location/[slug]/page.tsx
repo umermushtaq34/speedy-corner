@@ -194,7 +194,7 @@ export default async function LocationPage({
           <h2 className="!mb-2 !mt-10 !text-2xl !font-semibold !text-theme-ink">Address</h2>
           <p className="!my-0 !text-base !leading-8 !text-theme-muted">{fullAddress}</p>
 
-          <h2 className="!mb-3 !mt-6 !text-2xl !font-semibold !text-theme-ink">Working Hours</h2>
+          <h2 className="!mb-3 !mt-6 !text-2xl !font-semibold !text-theme-ink">Opening Hours</h2>
           <WorkingHours groups={location.workingHours} />
 
           <h2 className="!mb-2 !mt-10 !text-2xl !font-semibold !text-theme-ink">Find Us On The Map</h2>
