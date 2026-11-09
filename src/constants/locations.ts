@@ -81,7 +81,7 @@ export const LOCATION_CARDS: readonly LocationCard[] = [
     title: "25500 Old Kansas City Rd, Hillsdale, KS 66036",
     workingHours: PAOLA_HOURS,
     city: "Hillsdale, KS 66036",
-    imageUrl: "/25500-old-kansas-city-rd/25500-old-kansas-city-rd1.jpg",
+    imageUrl: "/25500-old-kansas-city-rd/25500-old-kansas-city-rd6.jpg",
     detailsLink: "/location/25500-old-kansas-city-rd",
     directionsLink:
       "https://www.google.com/maps/place/Phillips+66/@38.6648188,-94.8602325,17z/data=!4m15!1m8!3m7!1s0x87c059cdf2b46db7:0xf16343d35868f10b!2sKansas+City,+MO+64155!3b1!8m2!3d39.282939!4d-94.5727598!16s%2Fm%2F01__jk3!3m5!1s0x87c0b1a6f745c5d7:0x332cc8a6a114ca12!8m2!3d38.6648147!4d-94.8553616!16s%2Fg%2F11sbwb8qw9?hl=en-US&entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D",
