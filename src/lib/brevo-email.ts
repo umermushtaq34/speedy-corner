@@ -170,6 +170,7 @@ ${table([
     "Email",
     `<a href="mailto:${esc(application.email)}" style="color:${BRAND_COLOR};">${esc(application.email)}</a>`,
   ),
+  row("At least 21 years of age", esc(application.isOver21)),
 ])}
 ${heading("Skills")}
 <p style="margin:0 0 24px;">${skills.length ? skills.map(esc).join(" · ") : "None selected."}</p>
@@ -194,6 +195,7 @@ ${references}
     `Address: ${application.address}`,
     `Phone: ${application.phone}`,
     `Email: ${application.email}`,
+    `At least 21 years of age: ${application.isOver21}`,
     `Skills: ${skills.join(", ") || "None"}`,
     "",
     "Employment history:",

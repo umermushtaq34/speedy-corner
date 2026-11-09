@@ -104,6 +104,7 @@ export function CareerApplicationForm({ job }: { job: Job }) {
       address: get("address"),
       phone: get("phone"),
       email: get("email"),
+      isOver21: get("isOver21"),
       skills: form.getAll("skills").map(String),
       otherSkill: get("otherSkill"),
       employmentHistory: employers.map((_, index) => ({
@@ -286,6 +287,39 @@ export function CareerApplicationForm({ job }: { job: Job }) {
               required
               error={errors.email}
             />
+            <div className="min-w-0 sm:col-span-2">
+              <fieldset
+                aria-describedby={errors.isOver21 ? "isOver21-error" : undefined}
+              >
+                <legend className="mb-2 block text-sm font-semibold text-theme-ink">
+                  Are you at least 21 years of age?{" "}
+                  <span aria-hidden="true">*</span>
+                </legend>
+                <div className="flex gap-4">
+                  {["Yes", "No"].map((option, i) => (
+                    <label
+                      key={option}
+                      className="flex min-h-11 cursor-pointer items-center gap-3 rounded-xl border border-theme-line/70 px-4 text-sm text-theme-ink has-checked:border-theme-accent has-checked:bg-orange-50"
+                    >
+                      <input
+                        id={i === 0 ? "isOver21" : undefined}
+                        type="radio"
+                        name="isOver21"
+                        value={option}
+                        required
+                        className="h-5 w-5 accent-theme-accent"
+                      />
+                      {option}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+              {errors.isOver21 && (
+                <p id="isOver21-error" className="mt-2 text-sm text-red-700">
+                  {errors.isOver21}
+                </p>
+              )}
+            </div>
           </div>
         </fieldset>
 

@@ -20,6 +20,7 @@ export type CareerApplication = {
   address: string;
   phone: string;
   email: string;
+  isOver21: "Yes" | "No";
   skills: string[];
   otherSkill: string;
   employmentHistory: Employment[];
@@ -74,7 +75,11 @@ export function validateApplication(
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
     errors.email = "Please enter a valid email address.";
 
-  const allowedSkills = [...job.skills, "Other"];
+  const isOver21 = value.isOver21;
+  if (isOver21 !== "Yes" && isOver21 !== "No")
+    errors.isOver21 = "Please select Yes or No.";
+
+  const allowedSkills =[...job.skills, "Other"];
   const skills = Array.isArray(value.skills) ? value.skills : [];
   if (
     !Array.isArray(value.skills) ||
@@ -173,6 +178,7 @@ export function validateApplication(
       address,
       phone,
       email,
+      isOver21: isOver21 as "Yes" | "No",
       skills: [...new Set(skills as string[])],
       otherSkill,
       employmentHistory,
