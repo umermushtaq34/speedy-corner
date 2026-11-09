@@ -15,9 +15,9 @@ const SHOAL_CREEK_HOURS: readonly WorkingHoursGroup[] = [
 const BLUE_RIDGE_HOURS: readonly WorkingHoursGroup[] = [
   {
     schedule: [
-      { days: "Monday – Thursday", hours: "06:00 AM – 11:59 PM" },
+      { days: "Monday – Thursday", hours: "06:00 AM – 12:00 AM" },
       { days: "Friday – Saturday", hours: "06:00 AM – 01:00 AM" },
-      { days: "Sunday", hours: "07:00 AM – 11:59 PM" },
+      { days: "Sunday", hours: "07:00 AM – 12:00 AM" },
     ],
   },
 ];
