@@ -237,7 +237,7 @@ export const Location_data = [
     name: "Speedy Corner – Hillsdale",
     workingHours: PAOLA_HOURS,
     slug: "/25500-old-kansas-city-rd",
-    featured_image: "/25500-old-kansas-city-rd/25500-old-kansas-city-rd1.jpg",
+    featured_image: "/25500-old-kansas-city-rd/25500-old-kansas-city-rd6.jpg",
     tagline: "Serving Hillsdale with speed and convenience",
     seo_title_variants: [
       "Speedy Corner Hillsdale | Fuel & Roadside Convenience",

@@ -22,5 +22,6 @@ export const NAVBAR_LINKS: readonly NavbarItem[] = [
   },
   { label: "About Us", href: "/about" },
   { label: "Promotions", href: "/promotions" },
+  { label: "Careers", href: "/careers" },
   { label: "Contact Us", href: "/contact" },
 ] as const;

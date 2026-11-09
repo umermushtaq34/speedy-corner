@@ -8,14 +8,14 @@ import { NAVBAR_LINKS } from "@/constants/navigation";
 
 function BrandMark() {
   return (
-    <div className="relative h-14 w-[190px] sm:h-16 sm:w-[220px] lg:h-[72px] lg:w-[285px]">
+    <div className="relative h-14 w-[190px] sm:h-16 sm:w-[220px] lg:h-[72px] lg:w-[230px] xl:w-[285px]">
       <Image
         src="/speedy-corner-logo.webp"
         alt="Speedy Corner"
         fill
         priority
         className="object-contain object-left"
-        sizes="(max-width: 640px) 190px, (max-width: 1024px) 220px, 285px"
+        sizes="(max-width: 640px) 190px, (max-width: 1024px) 220px, (max-width: 1280px) 230px, 285px"
       />
     </div>
   );
@@ -172,7 +172,7 @@ export function Navbar() {
             ].join(" ")}
             aria-label="Primary"
           >
-            <ul className="flex flex-col gap-1 rounded-[1.5rem] border border-theme-line/80 bg-white p-3 shadow-[0_18px_44px_rgba(25,19,13,0.12)] lg:flex-row lg:items-center lg:justify-end lg:gap-2 lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none">
+            <ul className="flex flex-col gap-1 rounded-[1.5rem] border border-theme-line/80 bg-white p-3 shadow-[0_18px_44px_rgba(25,19,13,0.12)] lg:flex-row lg:items-center lg:justify-end lg:gap-1 lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none xl:gap-2">
               {NAVBAR_LINKS.map((item) => {
                 if ("children" in item) {
                   const hasActiveChild = item.children.some((child) => isActiveHref(child.href));
@@ -182,7 +182,7 @@ export function Navbar() {
                       <button
                         type="button"
                         className={[
-                          "inline-flex w-full items-center justify-between gap-2 rounded-full px-4 py-3 text-left text-[0.98rem] font-medium transition lg:w-auto lg:justify-center lg:px-5 lg:py-2.5",
+                          "inline-flex w-full items-center justify-between gap-2 whitespace-nowrap rounded-full px-4 py-3 text-left text-[0.98rem] font-medium transition lg:w-auto lg:justify-center lg:px-3 lg:py-2.5 xl:px-5",
                           hasActiveChild
                             ? "bg-theme-accent text-white shadow-[0_10px_20px_rgba(242,106,33,0.22)]"
                             : "text-theme-ink/78 hover:bg-theme-paper hover:text-theme-accent",
@@ -220,7 +220,7 @@ export function Navbar() {
                     <Link
                       href={item.href}
                       className={[
-                        "inline-flex items-center rounded-full px-4 py-3 text-[0.98rem] font-medium transition lg:px-5 lg:py-2.5",
+                        "inline-flex items-center whitespace-nowrap rounded-full px-4 py-3 text-[0.98rem] font-medium transition lg:px-3 lg:py-2.5 xl:px-5",
                         isActiveHref(item.href)
                           ? "bg-theme-accent text-white shadow-[0_10px_20px_rgba(242,106,33,0.22)]"
                           : "text-theme-ink/78 hover:bg-theme-paper hover:text-theme-accent",

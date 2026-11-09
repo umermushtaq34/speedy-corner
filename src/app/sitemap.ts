@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { Location_data } from "@/constants/locations";
+import { JOBS } from "@/constants/jobs";
 import { SITE_URL } from "@/lib/site";
 
 const STATIC_ROUTES: Array<{
@@ -12,6 +13,7 @@ const STATIC_ROUTES: Array<{
   { path: "/about", changeFrequency: "monthly", priority: 0.8 },
   { path: "/promotions", changeFrequency: "weekly", priority: 0.9, images: [`${SITE_URL}/home-promo-banner.webp`] },
   { path: "/contact", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/careers", changeFrequency: "weekly", priority: 0.8 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -38,5 +40,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  return [...staticEntries, ...locationEntries];
+  const careerEntries: MetadataRoute.Sitemap = JOBS.map((job) => ({
+    url: `${SITE_URL}/careers/${job.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...locationEntries, ...careerEntries];
 }
